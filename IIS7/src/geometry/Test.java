@@ -71,6 +71,36 @@ public class Test {
 		r1.setWidth(20);
 		c1.getCenter().setX(r1.area() - l1.getStartPoint().getY());
 		System.out.println("X of center of c1 = " + c1.getCenter().getX());
+		
+		
+		// Testiranje konstruktora - vezbe 4
+		
+		Point p2 = new Point(20, 30);
+		Point p3 = new Point(15, 18, true);
+		Point p4 = new Point(20, 30);
+		
+		// toString() metoda
+		
+		System.out.println(p4.toString());
+		
+		Rectangle r2 = new Rectangle(p3, 20, 40);
+		System.out.println(r2);
+		
+		// == i equals()
+		String s1 = new String("Hello World");
+		String s2 = new String("Hello World");
+		System.out.println(s1 == s2); // poredjenje referenci na objekte
+		System.out.println(s1.equals(s2)); // poredjenje vrednosti objekata
+		
+		int a = 5;
+		int b = 5;
+		System.out.println(a == b); // poredjenje vrednosti kod primitivnih tipova
+		
+		Rectangle r3 = new Rectangle(p3, 20, 40);
+		Rectangle r4 = new Rectangle(p3, 20, 140);
+		System.out.println(r2.equals(r3)); // true
+		System.out.println(r2.equals(c1)); // false
+		System.out.println(r2.equals(r4)); // false
 
 	}
 
