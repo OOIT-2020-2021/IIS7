@@ -24,6 +24,14 @@ public class Circle {
 		return radius * radius * Math.PI;
 	}
 	
+	public boolean contains(int x, int y) {
+		return this.center.distance(x, y) <= this.radius;
+	}
+	
+	public boolean contains(Point p) {
+		return this.center.distance(p.getX(), p.getY()) <= this.radius;
+	}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Circle) {
 			Circle pomocni = (Circle) obj;

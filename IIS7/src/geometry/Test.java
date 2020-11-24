@@ -101,7 +101,21 @@ public class Test {
 		System.out.println(r2.equals(r3)); // true
 		System.out.println(r2.equals(c1)); // false
 		System.out.println(r2.equals(r4)); // false
-
+		
+		Donut d = new Donut(p3, 100, 50);
+		
+		System.out.println(d);
+		System.out.println(d.contains(p1));
+		System.out.println(d.equals(r2));
+		
+		Donut d1 = new Donut(p4, 30, 13);
+		System.out.println(d.equals(d1));
+		
+		System.out.println(d.area());
+		
+		// dinamicko povezivanje
+		Circle c3 = new Donut(p1, 50, 30);
+		
 	}
 
 }

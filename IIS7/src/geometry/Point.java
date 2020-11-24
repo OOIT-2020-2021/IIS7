@@ -27,6 +27,10 @@ public class Point {
 		return d;
 	}
 	
+	public boolean contains(int x, int y) {
+		return this.distance(x, y) <= 3;
+	}
+	
 	public boolean equals(Object obj) {
 		if (obj instanceof Point) {
 			Point pomocna = (Point) obj;
