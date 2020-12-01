@@ -116,6 +116,13 @@ public class Test {
 		// dinamicko povezivanje
 		Circle c3 = new Donut(p1, 50, 30);
 		
+		Donut d2 = new Donut(p4, 50, 30);
+		
+		System.out.println(d2 instanceof Donut);
+		System.out.println(d2 instanceof Circle);
+		System.out.println(d2 instanceof SurfaceShape);
+		System.out.println(d2 instanceof Shape);
+		
 	}
 
 }

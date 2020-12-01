@@ -1,10 +1,12 @@
 package geometry;
 
-public class Circle {
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Circle extends SurfaceShape {
 
 	private int radius;
 	private Point center;
-	private boolean selected;
 	
 	public Circle() {
 
@@ -17,7 +19,33 @@ public class Circle {
 	
 	public Circle(Point center, int radius, boolean selected) {
 		this(center, radius);
-		this.selected = selected;
+		setSelected(selected);
+	}
+	
+	public Circle(Point center, int radius, boolean selected, Color color) {
+		this(center, radius, selected);
+		setColor(color);
+	}
+	
+	public Circle(Point center, int radius, boolean selected, Color color, Color innerColor) {
+		this(center, radius, selected, color);
+		setInnerColor(innerColor);
+	}
+	
+
+	@Override
+	public void fill(Graphics g) {
+		g.setColor(getInnerColor());
+		g.fillOval(this.center.getX() - this.radius + 1, this.center.getY() - this.radius + 1, this.radius*2 - 2, this.radius*2 - 2);
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(getColor());
+		g.drawOval(this.center.getX() - this.radius, this.center.getY() - this.radius, this.radius*2, this.radius*2);
+		this.fill(g);
+		
 	}
 	
 	public double area() {
@@ -56,12 +84,6 @@ public class Circle {
 	}
 	public void setCenter(Point center) {
 		this.center = center;
-	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 	
 	public String toString() {

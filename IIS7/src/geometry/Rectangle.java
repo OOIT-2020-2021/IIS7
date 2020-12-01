@@ -1,11 +1,13 @@
 package geometry;
 
-public class Rectangle {
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Rectangle extends SurfaceShape {
 
 	private Point upperLeftPoint;
 	private int width;
 	private int height;
-	private boolean selected;
 	
 	public Rectangle() {
 
@@ -19,7 +21,31 @@ public class Rectangle {
 	
 	public Rectangle(Point upperLeftPoint, int height, int width, boolean selected) {
 		this(upperLeftPoint, height, width);
-		this.selected = selected;
+		setSelected(selected);
+	}
+	
+	public Rectangle(Point upperLeftPoint, int height, int width, boolean selected, Color color) {
+		this(upperLeftPoint, height, width, selected);
+		setColor(color);
+	}
+	
+	public Rectangle(Point upperLeftPoint, int height, int width, boolean selected, Color color, Color innerColor) {
+		this(upperLeftPoint, height, width, selected, color);
+		setInnerColor(innerColor);;
+	}
+	
+	@Override
+	public void fill(Graphics g) {
+		g.setColor(getInnerColor());
+		g.fillRect(this.upperLeftPoint.getX() + 1, this.upperLeftPoint.getY() + 1, this.width - 1, this.height - 1);
+		
+	}
+
+	@Override
+	public void draw(Graphics g) {
+		g.setColor(getColor());
+		g.drawRect(this.upperLeftPoint.getX(), this.upperLeftPoint.getY(), this.width, this.height);
+		this.fill(g);
 	}
 	
 	public int area() {
@@ -35,7 +61,7 @@ public class Rectangle {
 		} else {
 			return false;
 		}
-	}
+	} 
 	
 	public boolean contains(Point p) {
 		if (upperLeftPoint.getX() <= p.getX() &&
@@ -43,7 +69,7 @@ public class Rectangle {
 				p.getX() <= upperLeftPoint.getX() + width &&
 				p.getY() <= upperLeftPoint.getY() + height) {
 			return true;
-		} else {
+		} else { 
 			return false;
 		}
 	}
@@ -80,12 +106,6 @@ public class Rectangle {
 	}
 	public void setHeight(int height) {
 		this.height = height;
-	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
 	}
 	
 	public String toString() {
