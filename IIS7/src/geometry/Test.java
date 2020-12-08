@@ -1,5 +1,7 @@
 package geometry;
 
+import java.util.Arrays;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -122,6 +124,26 @@ public class Test {
 		System.out.println(d2 instanceof Circle);
 		System.out.println(d2 instanceof SurfaceShape);
 		System.out.println(d2 instanceof Shape);
+		
+		Point p5 = new Point(5, 5);
+		Point p6 = new Point(2, 2);
+		Point p7 = new Point(10, 10);
+		Point p8 = new Point(20, 20);
+		
+		Point[] points = {p5,p6,p7,p8};
+		
+		System.out.println("Nesortiran niz tacaka");
+		for (int i = 0; i < points.length; i++) {
+			System.out.println(points[i]);
+		}
+		
+		// sortiranje niza
+		Arrays.sort(points);
+		
+		System.out.println("Sortiran niz tacaka");
+		for (int i = 0; i < points.length; i++) {
+			System.out.println(points[i]);
+		}
 		
 	}
 
