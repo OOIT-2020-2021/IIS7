@@ -46,6 +46,20 @@ public class Line extends Shape {
 		g.setColor(getColor());
 		g.drawLine(this.startPoint.getX(), this.startPoint.getY(), this.endPoint.getX(), this.endPoint.getY());
 		
+		if(isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(this.startPoint.getX()-3, this.startPoint.getY()-3, 6, 6);
+			g.drawRect(this.endPoint.getX()-3, this.endPoint.getY()-3, 6, 6);
+			g.drawRect(this.middleOfLine().getX() - 3, this.middleOfLine().getY() - 3, 6, 6);
+		}
+		
+	}
+	
+	public Point middleOfLine() {
+		int middleByX = (this.startPoint.getX() + this.endPoint.getX()) / 2;
+		int middleByY = (this.startPoint.getY() + this.endPoint.getY()) / 2;
+		Point middlePoint = new Point(middleByX, middleByY);
+		return middlePoint;
 	}
 	
 	public double length() {

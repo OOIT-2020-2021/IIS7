@@ -48,6 +48,11 @@ public class Point extends Shape {
 		g.drawLine(this.x - 2, this.y, this.x + 2, this.y);
 		g.drawLine(this.x, this.y - 2, this.x, this.y + 2);
 		
+		if (isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(this.x - 3, this.y - 3, 6, 6);
+		}
+		
 	}
 	
 	public double distance(int x2, int y2) {

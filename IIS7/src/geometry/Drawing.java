@@ -75,17 +75,21 @@ public class Drawing extends JPanel {
 			it.next().setSelected(true);
 		}
 		
+		// setovati sve oblike iz liste shapes kao selektovane
+		for(Shape s : shapes) {
+			s.setSelected(true);
+		}
+		
 		// iscrtati svaki oblik iz liste shapes pomocu for each
 		for(Shape s : shapes) {
 			s.draw(g);
 		}
 		
 		// postaviti kao selektovan svaki povrsinski oblik liste shapes
-		while(it.hasNext()) {
-			if (it.next() instanceof SurfaceShape) {
-				it.next().setSelected(true);
-			}
-		}
+		/*
+		 * while(it.hasNext()) { if (it.next() instanceof SurfaceShape) {
+		 * it.next().setSelected(true); } }
+		 */
 		
 		
 	}

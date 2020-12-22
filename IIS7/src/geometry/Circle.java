@@ -58,6 +58,15 @@ public class Circle extends SurfaceShape {
 		g.drawOval(this.center.getX() - this.radius, this.center.getY() - this.radius, this.radius*2, this.radius*2);
 		this.fill(g);
 		
+		if(isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(this.center.getX() - 3, this.center.getY() - 3, 6, 6);
+			g.drawRect(this.center.getX() - this.radius - 3, this.center.getY() - 3, 6, 6);
+			g.drawRect(this.center.getX() + this.radius - 3, this.center.getY() - 3, 6, 6);
+			g.drawRect(this.center.getX() - 3, this.center.getY() - this.radius - 3, 6, 6);
+			g.drawRect(this.center.getX() - 3, this.center.getY() + this.radius - 3, 6, 6);
+		}
+		
 	}
 	
 	public double area() {
