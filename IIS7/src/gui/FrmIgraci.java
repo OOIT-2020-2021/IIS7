@@ -57,7 +57,7 @@ public class FrmIgraci extends JFrame {
 	 */
 	public FrmIgraci() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 825, 460);
+		setBounds(100, 100, 865, 460);
 		setTitle("Evidencija igraca");
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -145,40 +145,79 @@ public class FrmIgraci extends JFrame {
 			}
 		});
 		
+		JButton btnDodajIgraca_1 = new JButton("Dodaj igraca");
+		btnDodajIgraca_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				DlgIgrac dlg = new DlgIgrac();
+				dlg.setVisible(true);
+				if (dlg.isOk) {
+					dlm.addElement(dlg.getTxtIme().getText() + " " + dlg.getTxtPrezime().getText());
+				}
+			}
+		});
+		
+		JButton btnModifikacijaIgraca = new JButton("Modifikacija igraca");
+		btnModifikacijaIgraca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (listIgraci.isSelectionEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nije selektovan nijedan igrac iz liste!");
+				} else {
+					DlgIgrac dlgModifikacija = new DlgIgrac();
+					int index = listIgraci.getSelectedIndex();
+					String[] split = dlm.getElementAt(index).toString().split(" ");
+					dlgModifikacija.getTxtIme().setText(split[0]);
+					dlgModifikacija.getTxtPrezime().setText(split[1]);
+					dlgModifikacija.setVisible(true);
+					if(dlgModifikacija.isOk) {
+						dlm.removeElementAt(index);
+						dlm.add(index, dlgModifikacija.getTxtIme().getText() + " " +
+								dlgModifikacija.getTxtPrezime().getText());
+					}
+				}
+			}
+		});
+		
 		
 		
 		GroupLayout gl_pnlCenter = new GroupLayout(pnlCenter);
 		gl_pnlCenter.setHorizontalGroup(
-			gl_pnlCenter.createParallelGroup(Alignment.LEADING)
+			gl_pnlCenter.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_pnlCenter.createSequentialGroup()
-					.addGap(30)
-					.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblUnesiIgraca)
-						.addComponent(lblOdaberiIgraca))
-					.addGap(41)
-					.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(cbxIgraci, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(txtUnosIgraca))
-					.addGap(33)
-					.addComponent(btnDodajIgraca)
-					.addContainerGap(306, Short.MAX_VALUE))
-				.addGroup(Alignment.TRAILING, gl_pnlCenter.createSequentialGroup()
-					.addContainerGap()
 					.addGroup(gl_pnlCenter.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnUkloniIgraca)
 						.addGroup(gl_pnlCenter.createSequentialGroup()
-							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(tglbtnGudelj, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(tglbtnTadic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(tglbtnKolarov, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
-							.addGap(18)
+							.addGap(30)
 							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING, false)
-									.addComponent(lblDusanTadic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(lblAleksandarKolarov, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-								.addComponent(lblNemanjaGudelj))
-							.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
-							.addComponent(scrlPaneIgraci, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(lblUnesiIgraca)
+								.addComponent(lblOdaberiIgraca))
+							.addGap(41)
+							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(cbxIgraci, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(txtUnosIgraca))
+							.addGap(33)
+							.addComponent(btnDodajIgraca)
+							.addGap(149)
+							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.TRAILING, false)
+								.addGroup(gl_pnlCenter.createSequentialGroup()
+									.addComponent(btnModifikacijaIgraca)
+									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+								.addComponent(btnDodajIgraca_1)))
+						.addGroup(gl_pnlCenter.createSequentialGroup()
+							.addContainerGap()
+							.addGroup(gl_pnlCenter.createParallelGroup(Alignment.TRAILING)
+								.addComponent(btnUkloniIgraca)
+								.addGroup(gl_pnlCenter.createSequentialGroup()
+									.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING, false)
+										.addComponent(tglbtnGudelj, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(tglbtnTadic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(tglbtnKolarov, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+									.addGap(18)
+									.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING)
+										.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING, false)
+											.addComponent(lblDusanTadic, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+											.addComponent(lblAleksandarKolarov, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+										.addComponent(lblNemanjaGudelj))
+									.addPreferredGap(ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+									.addComponent(scrlPaneIgraci, GroupLayout.PREFERRED_SIZE, 306, GroupLayout.PREFERRED_SIZE)))))
 					.addGap(36))
 		);
 		gl_pnlCenter.setVerticalGroup(
@@ -206,14 +245,16 @@ public class FrmIgraci extends JFrame {
 					.addGap(25)
 					.addGroup(gl_pnlCenter.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblUnesiIgraca)
-						.addComponent(txtUnosIgraca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtUnosIgraca, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnDodajIgraca_1))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(gl_pnlCenter.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblOdaberiIgraca)
 						.addGroup(gl_pnlCenter.createParallelGroup(Alignment.BASELINE)
 							.addComponent(cbxIgraci, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addComponent(btnDodajIgraca)))
-					.addContainerGap(64, Short.MAX_VALUE))
+							.addComponent(btnDodajIgraca)
+							.addComponent(btnModifikacijaIgraca)))
+					.addContainerGap(61, Short.MAX_VALUE))
 		);
 		
 		scrlPaneIgraci.setViewportView(listIgraci);
